@@ -1,0 +1,106 @@
+
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <title>AI 程式練習助手</title>
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    <div class="container">
+
+        <h1>AI 程式練習助手</h1>
+
+        <p class="subtitle">選擇一個 Python 學習主題</p>
+
+        <form method="POST">
+
+            <h3>請選擇學習主題：</h3>
+
+            <div class="topics">
+                <label>
+                    <input type="radio" name="topic"
+                           value="輸入輸出"
+                           {% if topic == "輸入輸出" %}checked{% endif %}>
+                    輸入輸出
+                </label>
+
+                <label>
+                    <input type="radio" name="topic"
+                           value="條件判斷"
+                           {% if topic == "條件判斷" %}checked{% endif %}>
+                    條件判斷
+                </label>
+
+                <label>
+                    <input type="radio" name="topic"
+                           value="迴圈"
+                           {% if topic == "迴圈" %}checked{% endif %}>
+                    迴圈
+                </label>
+
+                <label>
+                    <input type="radio" name="topic"
+                           value="串列"
+                           {% if topic == "串列" %}checked{% endif %}>
+                    串列
+                </label>
+            </div>
+
+            <button class="main-btn" type="submit"
+                    name="action" value="question">
+                幫我出題
+            </button>
+
+            <div class="question-box">
+                <h2>AI 題目</h2>
+                <p>{{ question_text }}</p>
+
+                {% if topic == "輸入輸出" %}
+                    <p>A. input()</p>
+                    <p>B. print()</p>
+                    <p>C. len()</p>
+                    <p>D. range()</p>
+
+                    <h3>請選擇你的答案：</h3>
+
+                    <label>
+                        <input type="radio" name="student_answer"
+                               value="A"> A
+                    </label>
+                    <label>
+                        <input type="radio" name="student_answer"
+                               value="B"> B
+                    </label>
+                    <label>
+                        <input type="radio" name="student_answer"
+                               value="C"> C
+                    </label>
+                    <label>
+                        <input type="radio" name="student_answer"
+                               value="D"> D
+                    </label>
+
+                    <br><br>
+
+                    <button class="main-btn" type="submit"
+                            name="action" value="check">
+                        提交答案
+                    </button>
+                {% endif %}
+            </div>
+
+            <div class="feedback-box">
+                <h2>AI 學習回饋</h2>
+                <p>{{ feedback }}</p>
+            </div>
+
+        </form>
+
+    </div>
+</body>
+
+</html>
